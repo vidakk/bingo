@@ -1,0 +1,238 @@
+:root {
+  color-scheme: light;
+  --ink: #111;
+  --paper: #f4f1ea;
+  --card: #fff;
+  --mark: #d01212;
+  --mark-soft: rgba(208, 18, 18, 0.22);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: Georgia, "Iowan Old Style", "Palatino Linotype", Palatino, serif;
+}
+
+button,
+.letters {
+  font-family: "Arial Black", "Arial Bold", Impact, sans-serif;
+}
+
+.wrap {
+  max-width: 980px;
+  margin: 0 auto;
+  padding: 20px 16px 48px;
+}
+
+h1 {
+  margin: 8px 0 6px;
+  text-align: center;
+  font-size: clamp(32px, 5vw, 52px);
+  font-weight: 900;
+  letter-spacing: -0.03em;
+  line-height: 1;
+  font-family: "Arial Black", "Arial Bold", Impact, sans-serif;
+}
+
+.hint {
+  margin: 0 0 18px;
+  text-align: center;
+  font-size: 16px;
+}
+
+.toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 8px;
+  margin-bottom: 14px;
+}
+
+.toolbar button {
+  border: 2px solid var(--ink);
+  background: var(--card);
+  color: var(--ink);
+  font-size: 14px;
+  letter-spacing: 0.01em;
+  padding: 10px 14px;
+  cursor: pointer;
+}
+
+.toolbar button:hover {
+  background: var(--ink);
+  color: var(--card);
+}
+
+.toolbar button:focus-visible,
+.cell:focus-visible {
+  outline: 3px solid var(--mark);
+  outline-offset: 2px;
+}
+
+.banner {
+  position: sticky;
+  top: 0;
+  z-index: 2;
+  margin: 0 0 12px;
+  background: var(--mark);
+  color: white;
+  text-align: center;
+  font-family: "Arial Black", Impact, sans-serif;
+  font-size: clamp(22px, 4vw, 34px);
+  letter-spacing: 0.16em;
+  padding: 10px 12px;
+}
+
+.letters,
+.card {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+}
+
+.letters span {
+  text-align: center;
+  font-size: clamp(40px, 8vw, 92px);
+  line-height: 0.9;
+  padding-bottom: 6px;
+}
+
+.card {
+  background: var(--card);
+  border-top: 3px solid var(--ink);
+  border-left: 3px solid var(--ink);
+}
+
+.cell {
+  position: relative;
+  min-width: 0;
+  min-height: clamp(84px, 13vw, 132px);
+  border-right: 3px solid var(--ink);
+  border-bottom: 3px solid var(--ink);
+  background: var(--card);
+  color: var(--ink);
+  padding: 8px 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  font-size: clamp(11px, 1.35vw, 15px);
+  line-height: 1.25;
+  cursor: pointer;
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
+  touch-action: manipulation;
+  overflow-wrap: break-word;
+}
+
+.cell:hover {
+  background: #f7f7f7;
+}
+
+.cell span {
+  min-width: 0;
+  max-width: 100%;
+  overflow-wrap: break-word;
+}
+
+.cell.marked::after {
+  content: "";
+  position: absolute;
+  inset: 12% 4%;
+  border-radius: 50%;
+  background: var(--mark-soft);
+  border: 3px solid var(--mark);
+  pointer-events: none;
+}
+
+.cell.win::after {
+  background: rgba(208, 18, 18, 0.45);
+}
+
+.cell.free {
+  cursor: default;
+  background: var(--card);
+}
+
+.cell.free:hover {
+  background: var(--card);
+}
+
+.cell.free svg {
+  width: 58%;
+  height: 58%;
+  fill: var(--ink);
+}
+
+.cell.free.win {
+  background: var(--mark);
+}
+
+.cell.free.win svg {
+  fill: white;
+}
+
+.cell.free.marked::after,
+.cell.free::after {
+  display: none;
+}
+
+.status {
+  margin: 14px 0 0;
+  text-align: center;
+  font-size: 15px;
+}
+
+@media (max-width: 640px) {
+  .wrap {
+    padding: 12px 8px 32px;
+  }
+
+  .hint {
+    font-size: 14px;
+  }
+
+  .cell {
+    padding: 4px 2px;
+    min-height: 96px;
+    font-size: 10px;
+    line-height: 1.15;
+  }
+
+  .toolbar button {
+    flex: 1 1 40%;
+  }
+}
+
+@media print {
+  body {
+    background: white;
+  }
+
+  .toolbar,
+  .hint,
+  .status,
+  .banner {
+    display: none;
+  }
+
+  .wrap {
+    max-width: none;
+    padding: 0;
+  }
+
+  .cell.marked::after {
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    transition: none !important;
+  }
+}
