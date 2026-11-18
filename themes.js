@@ -9,7 +9,6 @@ const FROM_CARD = [
   "pominje se jogurt",
   "vučić skida naočare",
   "spominje se čupićeva brada",
-  "čupićeva brada",
   "sns optužuje studente za svoja zlodela",
   "„ja sam stariji čovek“ — stojan radenović",
   "ukupan govor sl ispod 10 minuta",
