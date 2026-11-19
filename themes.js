@@ -115,6 +115,7 @@ const FROM_SPEECH = [
   "„neću nimalo da opstruišem“",
   "grujin priveden zbog spiskova",
   "oteli telefon nenadu vujiću",
+  "limuzine tinuninu",
 ];
 
 const THEMES = [...new Set([...FROM_CARD, ...FROM_SPEECH])];
